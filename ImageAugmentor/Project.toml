@@ -1,0 +1,4 @@
+name = "ImageAugmentor"
+uuid = "1bbbbbf2-c84f-41a6-8b15-b13cc60ecd8f"
+authors = ["Xuanlin <maoxuanlin257@gmail.com>"]
+version = "0.1.0"
