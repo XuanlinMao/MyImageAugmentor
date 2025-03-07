@@ -1,9 +1,7 @@
 module ImageAugmentor
 
 using Random, Images
-export augment, 
-    #    padding, resize, rotate, flip, crop, affine_transform, color_adjust, add_noise, occlude_region,
-       Padding, Resize, Rotate, Flip, Crop, AffineTransform, ColorAdjust, AddNoise, Erase, GridDropout
+export augment, Padding, Resize, Rotate, Flip, Crop, AffineTransform, ColorAdjust, AddNoise, Erase, GridDropout
 
 
 # Define the abstract class. It is used to realize the sequence of augmentation
@@ -308,7 +306,7 @@ end
 function add_noise(img::AbstractArray, a::AddNoise)
     """
     Add gaussian noise to the image.
-    AddNoise.std is in the scale of (0, 255). We recommend setting it between 10-30.
+    AddNoise.std: The standard deviation of the gaussian noise. It is in the scale of (0, 255). We recommend setting it between 10-30.
     """
     res = copy(img)
     noise = randn(size(img)) .* (a.std / 255.0)
@@ -326,6 +324,11 @@ struct Erase <: Augmentation
 end
 
 function erase(img::AbstractArray, o::Erase)
+    """
+    Randomly erase some part of the image.
+    Erase.scale: Tuple{Real, Real}, representing the size of areas
+    Erase.value: The value used to fill the blank areas after erasing
+    """
     @assert (0 < o.scale[1] < 1) && (0 < o.scale[2] < 1) "Erase.scale must be in (0,1)!"
     @assert (0 <= o.value <= 1) "GridDropout.value must be between 0 and 1"
     h, w, c = size(img)
@@ -351,6 +354,12 @@ struct GridDropout <: Augmentation
 end
 
 function grid_dropout(img::AbstractArray, o::GridDropout)
+    """
+    Randomly drop some part of the image according to the grids.
+    GridDropout.grid_num: The number of grids every row and column
+    GridDropout.p: Probability of dropout, between 0-1
+    GridDropout.value: The value used to fill the blank areas after dropout, between 0-1
+    """
     @assert (0 <= o.p <= 1) "GridDropout.p must be between 0 and 1"
     @assert (0 <= o.value <= 1) "GridDropout.value must be between 0 and 1"
     h, w, c = size(img)
@@ -377,6 +386,12 @@ end
 
 
 function augment(img, operations::Vector{<:Augmentation})
+    """
+    Implement the augmentation defined in the vector operatoins. The operation are execute sequentially.
+    Return a new image.
+    img: the original image
+    operations: a vector of Augmentation
+    """
     result = copy(img) # avoid inplace modification
     result = Float32.(channelview(result))
     @assert ndims(result) == 3 "Dims of the image must be (H,W,C)!"

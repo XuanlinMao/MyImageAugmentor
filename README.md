@@ -1,7 +1,7 @@
-# **ImageAugmentor: A Julia Package for Image Augmentation** (STAT244 2025 Spring)  
+# **ImageAugmentor: A Julia Package for Image Augmentation** 
 
 ## **Overview**  
-In this project, we have developed a Julia package for **image augmentation**, designed to enhance datasets and improve the performance of vision models such as CNNs.  
+This is a course project at UC Berkeley (STAT244 2025 Spring). In this project, we have developed a Julia package for **image augmentation**, designed to enhance datasets and improve the performance of vision models such as CNNs.
 
 ### **Supported Augmentations**  
 This package includes the following augmentation operations:  
@@ -13,14 +13,14 @@ This package includes the following augmentation operations:
   - `Flip`  
   - `Crop`  
   - `AffineTransform`  
-    - Shear  
-    - Translate  
-    - Scale  
+    - `Shear`  
+    - `Translate`  
+    - `Scale`  
 
 - **Color and Noise Adjustments**  
   - `ColorAdjust`  
-    - Brightness  
-    - Contrast  
+    - `Brightness`  
+    - `Contrast`  
   - `AddNoise`  
 
 - **Region-Based Augmentations**  
@@ -32,7 +32,7 @@ The dataset used in this project is **CIFAR-10** ([link](https://www.cs.toronto.
 We loaded and preprocessed the dataset in [dataloader.ipynb](./dataloader.ipynb) and saved 50 sample images in PNG format inside the [img/](./img) folder for augmentation experiments.  
 
 ## **Examples**  
-We demonstrate the effect of each augmentation operation using `image_0` in the [ImageAugmentor/img_output](./ImageAugmentor/img_output) folder.  
+We demonstrate the effect of each augmentation operation using `image_0` in the [img_output/](./ImageAugmentor/img_output) folder.  
 
 ![exmaple](./example.png)
 
