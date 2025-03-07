@@ -29,10 +29,12 @@ This package includes the following augmentation operations:
 
 ## **Data Source**  
 The dataset used in this project is **CIFAR-10** ([link](https://www.cs.toronto.edu/~kriz/cifar.html)).  
-We loaded and preprocessed the dataset in `dataloader.ipynb` and saved 50 sample images in PNG format inside the [img](./img) folder for augmentation experiments.  
+We loaded and preprocessed the dataset in [dataloader.ipynb](./dataloader.ipynb) and saved 50 sample images in PNG format inside the [img/](./img) folder for augmentation experiments.  
 
 ## **Examples**  
 We demonstrate the effect of each augmentation operation using `image_0` in the [ImageAugmentor/img_output](./ImageAugmentor/img_output) folder.  
+
+![exmaple](./example.png)
 
 ## **How to Use**  
 
@@ -52,7 +54,7 @@ ops = [
 augment(img, ops)
 ```
 
-For more complex usage involving randomness and parallelization, we provide an example using 10 images in [data_augentation.jl](./data_augentation.jl), where we will generate 4 augmented images for each image, and the new images will be saved in the `img_aug` folder. You can reproduce this process with the following steps:  
+For more complex usage involving randomness and parallelization, we provide an example using 10 images in [data_augmentation.jl](./data_augmentation.jl), where we will generate 4 augmented images for each image, and the new images will be saved in the `img_aug` folder. You can reproduce this process with the following steps:  
 
 ```sh
 git clone https://github.com/XuanlinMao/MyImageAugmentor.git
