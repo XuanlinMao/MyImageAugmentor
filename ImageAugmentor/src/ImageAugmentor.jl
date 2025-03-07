@@ -267,8 +267,8 @@ end
 
 
 struct ColorAdjust <: Augmentation
-    type::Symbol
-    factor::Float64
+    type::Symbol # :brightness, :contrast
+    factor::Float64 
 end
 
 
